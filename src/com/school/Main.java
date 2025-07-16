@@ -5,11 +5,10 @@ public class Main {
 
         // Create array of Students
         Student[] students = {
-            new Student("1", "Sarayu"),
+            new Student("1", "Sarayu S"),
             new Student("2", "Mithra")
         };
 
-        // Create array of Courses
         Course[] courses = {
             new Course("CS101", "Data Structures"),
             new Course("CS102", "OOP in Java")
