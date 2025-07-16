@@ -8,7 +8,6 @@ public class Main {
             new Student("2", "Mithra")
         };
 
-        // Create array of Courses
         Course[] courses = {
             new Course("CS101", "Data Structures"),
             new Course("CS102", "OOP in Java")
