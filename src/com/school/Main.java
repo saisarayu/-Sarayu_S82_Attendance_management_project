@@ -2,6 +2,7 @@ package com.school;
 
 public class Main {
     public static void main(String[] args) {
+
         // Create array of Students
         Student[] students = {
             new Student("1", "Sarayu"),
