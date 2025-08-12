@@ -1,13 +1,15 @@
 public class Student {
+    private static int nextStudentIdCounter = 1; 
     private int studentId;
     private String name;
 
-    public Student(int studentId, String name) {
-        this.studentId = studentId;
+
+    public Student(String name) {
+        this.studentId = nextStudentIdCounter++;
         this.name = name;
     }
 
-    public void displayInfo() {
-        System.out.println("Student ID: " + studentId + ", Name: " + name);
+    public void displayDetails() {
+        System.out.println("Student ID: S" + studentId + ", Name: " + name);
     }
 }
