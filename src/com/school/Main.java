@@ -1,46 +1,58 @@
-package com.school;
-
-import com.school.storage.FileStorageService;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
+
+    // Display directory using polymorphism
+    public static void displaySchoolDirectory(List<Person> people) {
+        System.out.println("\n--- School Directory ---");
+        for (Person person : people) {
+            person.displayDetails(); // Runtime polymorphism in action
+        }
+    }
+
     public static void main(String[] args) {
         // Create Students
-        Student s1 = new Student("Alice", 1, "Grade 10");
-        Student s2 = new Student("Bob", 2, "Grade 11");
+        Student s1 = new Student(1, "Alice", "CS");
+        Student s2 = new Student(2, "Bob", "IT");
+
+        // Create Teachers
+        Teacher t1 = new Teacher(101, "Dr. Smith", "Computer Science");
+        Teacher t2 = new Teacher(102, "Prof. Johnson", "Information Technology");
+
+        // Create Staff
+        Staff staff1 = new Staff(201, "Mr. Brown", "Administration");
+
+        // Store in polymorphic list
+        List<Person> schoolPeople = new ArrayList<>();
+        schoolPeople.add(s1);
+        schoolPeople.add(s2);
+        schoolPeople.add(t1);
+        schoolPeople.add(t2);
+        schoolPeople.add(staff1);
+
+        // Polymorphic display
+        displaySchoolDirectory(schoolPeople);
 
         // Create Courses
-        Course c1 = new Course(101, "Mathematics");
-        Course c2 = new Course(102, "Science");
+        Course c1 = new Course(501, "Data Structures");
+        Course c2 = new Course(502, "Database Systems");
 
         // Attendance Records
-        List<AttendanceRecord> attendanceLog = new ArrayList<>();
-        attendanceLog.add(new AttendanceRecord(s1.getId(), c1.getCourseId(), "Present"));
-        attendanceLog.add(new AttendanceRecord(s2.getId(), c2.getCourseId(), "Absent"));
-        attendanceLog.add(new AttendanceRecord(s1.getId(), c2.getCourseId(), "Late"));
+        AttendanceRecord r1 = new AttendanceRecord(s1, c1, "Present");
+        AttendanceRecord r2 = new AttendanceRecord(s2, c2, "Absent");
 
-        // Display records on console
         System.out.println("\n--- Attendance Log ---");
-        for (AttendanceRecord record : attendanceLog) {
-            record.displayRecord();
+        r1.displayRecord();
+        r2.displayRecord();
+
+        // Save only Students to file
+        List<Student> studentsOnly = new ArrayList<>();
+        for (Person p : schoolPeople) {
+            if (p instanceof Student) {
+                studentsOnly.add((Student) p);
+            }
         }
 
-        // Save data to files
-        FileStorageService storage = new FileStorageService();
-
-        List<Student> students = new ArrayList<>();
-        students.add(s1);
-        students.add(s2);
-
-        List<Course> courses = new ArrayList<>();
-        courses.add(c1);
-        courses.add(c2);
-
-        storage.saveToFile("students.txt", students);
-        storage.saveToFile("courses.txt", courses);
-        storage.saveToFile("Attendance_log.txt", attendanceLog);
-
-        System.out.println("\nData saved to files ✅");
+        FileStorageService.saveData(studentsOnly, "students.txt");
     }
 }

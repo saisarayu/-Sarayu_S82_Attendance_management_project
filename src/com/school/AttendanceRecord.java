@@ -1,37 +1,35 @@
-package com.school;
-
 public class AttendanceRecord {
-    private int studentId;
-    private int courseId;
-    private String status;
+    private Student student;
+    private Course course;
+    private String status; // e.g., "Present", "Absent"
 
-    public AttendanceRecord(int studentId, int courseId, String status) {
-        this.studentId = studentId;
-        this.courseId = courseId;
-
-        if (status.equalsIgnoreCase("Present") || status.equalsIgnoreCase("Absent")) {
-            this.status = status;
-        } else {
-            System.out.println("⚠ Warning: Invalid status '" + status + "'. Setting to 'Invalid'.");
-            this.status = "Invalid";
-        }
+    public AttendanceRecord(Student student, Course course, String status) {
+        this.student = student;
+        this.course = course;
+        this.status = status;
     }
 
-    public int getStudentId() {
-        return studentId;
+    public Student getStudent() {
+        return student;
     }
 
-    public int getCourseId() {
-        return courseId;
+    public Course getCourse() {
+        return course;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void displayRecord() {
-        System.out.println("Student ID: " + studentId +
-                " | Course ID: " + courseId +
-                " | Status: " + status);
+   public void displayRecord() {
+    System.out.println("Student ID: " + student.getStudent() +
+                       " | Course ID: " + course.getCourse() +
+                       " | Status: " + status);
+}
+
+
+    // For saving to file
+    public String toDataString() {
+        return student.getId() + "," + course.getCourseId() + "," + status;
     }
 }
