@@ -22,8 +22,8 @@ public class AttendanceRecord {
     }
 
    public void displayRecord() {
-    System.out.println("Student ID: " + student.getStudent() +
-                       " | Course ID: " + course.getCourse() +
+    System.out.println("Student ID: " + student.getID() +
+                       " | Course ID: " + course.getCourseID() +
                        " | Status: " + status);
 }
 
